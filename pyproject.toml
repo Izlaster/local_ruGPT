@@ -1,0 +1,31 @@
+[project]
+name = "work-nn"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Izlaster",email = "izmaylovle0@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "transformers (>=4.51.3,<5.0.0)",
+    "torch (>=2.7.0,<3.0.0)",
+    "bitsandbytes (>=0.45.5,<0.46.0)",
+    "huggingface-hub (>=0.30.2,<0.31.0)",
+    "accelerate (>=1.6.0,<2.0.0)",
+    "safetensors (>=0.5.3,<0.6.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "pytorch-cuda"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "explicit"
+
+[tool.poetry.dependencies]
+torch = { version = "2.7.0+cu118", source = "pytorch-cuda" }
+torchvision = { version = "*", source = "pytorch-cuda" }
