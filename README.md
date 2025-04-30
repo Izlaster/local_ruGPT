@@ -21,7 +21,6 @@
    ```powershell
    poetry --version
    ```  
-   Poetry кроссплатформен и одинаково поддерживает Windows, macOS и Linux  ([Introduction | Documentation | Poetry - Python dependency ...](https://python-poetry.org/docs/?utm_source=chatgpt.com)).  
 
 ---
 
