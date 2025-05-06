@@ -11,16 +11,6 @@ OUTPUT_FILE = "sources.txt"
 MAX_TOKENS_PER_CHUNK = 1500
 MAX_NEW_TOKENS = 200
 
-def ensure_model(model_path: str, repo_id: str):
-    if not os.path.isdir("models/"):
-        print(f"Папка models не найдена — создаю...")
-        os.makedirs("models/", exist_ok=True)  # рекурсивно создаст все уровни :contentReference[oaicite:0]{index=0}
-        print(f"Папка models создана.")
-    if not os.path.isdir(model_path):
-        print(f"Модель не найдена в {model_path}, начинаю загрузку из {repo_id}...")
-        snapshot_download(repo_id=repo_id, local_dir="models/")
-        print("Загрузка завершена.")
-
 def load_model(model_path):
     tokenizer = AutoTokenizer.from_pretrained(model_path, local_files_only=True)
     model = AutoModelForCausalLM.from_pretrained(
@@ -59,8 +49,6 @@ def extract_sources_from_chunk(chunk, tokenizer, model):
     return text[len(prompt):].strip()
 
 def main():
-    ensure_model(MODEL_PATH, REPO_ID)
-
     tokenizer, model = load_model(MODEL_PATH)
 
     if not os.path.exists(INPUT_FILE):
